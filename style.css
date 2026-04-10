@@ -879,21 +879,7 @@ body {
   line-height: 1.7;
   color: var(--text-soft);
 }
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(20, 32, 54, 0.28);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
 
-.modal.hidden {
-  display: none;
-}
 
 .modal-content {
   width: min(420px, 100%);
