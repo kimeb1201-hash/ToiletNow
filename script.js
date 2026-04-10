@@ -362,6 +362,19 @@ document.getElementById("openGuideBtn")?.addEventListener("click", () => {
 
 document.getElementById("closeGuideBtn")?.addEventListener("click", () => {
   document.getElementById("guideModal")?.classList.add("hidden");
+  document.getElementById("adModal")?.classList.remove("hidden");
+  document.getElementById("closeAdBtn")?.addEventListener("click", () => {
+  document.getElementById("adModal")?.classList.add("hidden");
+});
+
+document.getElementById("adLaterBtn")?.addEventListener("click", () => {
+  document.getElementById("adModal")?.classList.add("hidden");
+});
+
+document.getElementById("adVisitBtn")?.addEventListener("click", () => {
+  alert("티앙팡: 오후의 홍차\nToilet Now 앱 방문 혜택: 다과 서비스 제공");
+});
+});
 });
 
 window.showDetail = function (id) {
