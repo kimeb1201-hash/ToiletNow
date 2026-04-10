@@ -450,3 +450,40 @@ initSelect();
 renderDetail(1);
 initLiveLocation();
 switchPage("home");
+window.addEventListener("DOMContentLoaded", () => {
+  const guideModal = document.getElementById("guideModal");
+  const adModal = document.getElementById("adModal");
+
+  const openBtn = document.getElementById("openGuideBtn");
+  const closeGuideBtn = document.getElementById("closeGuideBtn");
+  const closeAdBtn = document.getElementById("closeAdBtn");
+  const adLaterBtn = document.getElementById("adLaterBtn");
+  const adVisitBtn = document.getElementById("adVisitBtn");
+
+  // 서비스소개 열기
+  openBtn?.addEventListener("click", () => {
+    guideModal?.classList.remove("hidden");
+    adModal?.classList.add("hidden");
+  });
+
+  // 서비스소개 닫기 → 광고 열기
+  closeGuideBtn?.addEventListener("click", () => {
+    guideModal?.classList.add("hidden");
+    adModal?.classList.remove("hidden");
+  });
+
+  // 광고 닫기
+  closeAdBtn?.addEventListener("click", () => {
+    adModal?.classList.add("hidden");
+  });
+
+  // 나중에 보기
+  adLaterBtn?.addEventListener("click", () => {
+    adModal?.classList.add("hidden");
+  });
+
+  // 광고 버튼
+  adVisitBtn?.addEventListener("click", () => {
+    alert("티앙팡: 오후의 홍차\nToilet Now 방문 시 다과 서비스 제공");
+  });
+});
