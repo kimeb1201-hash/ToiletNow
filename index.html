@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Toilet Now</title>
   <link rel="stylesheet" href="style.css" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
@@ -24,176 +23,272 @@
         <button class="icon-btn" id="loginBtn">👤</button>
       </header>
 
-      <section class="hero">
-        <div class="hero-badge">급한 순간을 위한 MVP</div>
-        <h2>가장 가까운 화장실을<br>빠르게 찾고 확인하세요</h2>
-        <p>
-          Toilet Now는 사용자의 현재 위치를 기준으로 주변 화장실의 거리,
-          청결도, 비밀번호 여부, 이용 가능 상태를 한눈에 보여주는 서비스입니다.
-        </p>
+      <!-- 홈 -->
+      <section class="page active" id="page-home">
+        <section class="hero">
+          <div class="hero-badge">급한 순간을 위한 MVP</div>
+          <h2>가장 가까운 화장실을<br>빠르게 찾고 확인하세요</h2>
+          <p>
+            Toilet Now는 사용자의 현재 위치를 기준으로 주변 화장실의 거리,
+            청결도, 비밀번호 여부, 이용 가능 상태를 한눈에 보여주는 서비스입니다.
+          </p>
 
-        <div class="hero-actions">
-          <button class="gloss-btn" id="findNearbyBtn">📍 내 주변 화장실 찾기</button>
-          <button class="ghost-btn" id="openGuideBtn">💬 서비스 소개 보기</button>
-        </div>
-      </section>
+          <div class="hero-actions">
+            <button class="gloss-btn" id="findNearbyBtn">📍 내 주변 화장실 찾기</button>
+            <button class="ghost-btn" id="openGuideBtn">💬 서비스 소개 보기</button>
+          </div>
+        </section>
 
-      <div class="search-box">
-        <span>🔎</span>
-        <input type="text" placeholder="화장실 이름, 지역 검색" />
-      </div>
-
-      <section class="quick-icons">
-        <div class="quick-item">
-          <div class="bubble">📍</div>
-          <p>가까운 곳</p>
-        </div>
-        <div class="quick-item">
-          <div class="bubble">✨</div>
-          <p>청결 우수</p>
-        </div>
-        <div class="quick-item">
-          <div class="bubble">🔓</div>
-          <p>비번 없음</p>
-        </div>
-        <div class="quick-item">
-          <div class="bubble">🫧</div>
-          <p>리뷰 많은 곳</p>
-        </div>
-      </section>
-
-      <section class="stats">
-        <div class="stat-card">
-          <span class="stat-label">주변 화장실</span>
-          <div class="stat-value" id="nearbyCount">0개</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">이용 가능</span>
-          <div class="stat-value" id="availableCount">0개</div>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">평균 청결도</span>
-          <div class="stat-value" id="avgCleanliness">0.0</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h3>추천 화장실</h3>
-          <span id="listStatus">데이터 불러오는 중...</span>
+        <div class="search-box">
+          <span>🔎</span>
+          <input type="text" id="searchInput" placeholder="화장실 이름, 지역 검색" />
         </div>
 
-        <div class="filters">
-          <button class="filter-chip active" data-filter="all">전체</button>
-          <button class="filter-chip" data-filter="available">이용 가능</button>
-          <button class="filter-chip" data-filter="clean">청결도 높음</button>
-          <button class="filter-chip" data-filter="password">비밀번호 없음</button>
-        </div>
+        <section class="quick-icons">
+          <div class="quick-item">
+            <div class="bubble">📍</div>
+            <p>가까운 곳</p>
+          </div>
+          <div class="quick-item">
+            <div class="bubble">✨</div>
+            <p>청결 우수</p>
+          </div>
+          <div class="quick-item">
+            <div class="bubble">🔓</div>
+            <p>비번 없음</p>
+          </div>
+          <div class="quick-item">
+            <div class="bubble">🫧</div>
+            <p>리뷰 많은 곳</p>
+          </div>
+        </section>
 
-        <div id="toiletList" class="card-list"></div>
-      </section>
+        <section class="stats">
+          <div class="stat-card">
+            <span class="stat-label">주변 화장실</span>
+            <div class="stat-value" id="nearbyCount">0개</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">이용 가능</span>
+            <div class="stat-value" id="availableCount">0개</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">평균 청결도</span>
+            <div class="stat-value" id="avgCleanliness">0.0</div>
+          </div>
+        </section>
 
-      <section class="section">
-        <div class="section-head">
-          <h3>선택한 화장실 정보</h3>
-          <span>상세 화면</span>
-        </div>
+        <section class="section">
+          <div class="section-head">
+            <h3>추천 화장실</h3>
+            <span id="listStatus">데이터 불러오는 중...</span>
+          </div>
 
-        <div id="detailPanel" class="place-card">
-          <div class="place-top">
-            <div class="place-left">
-              <div class="place-icon">🚻</div>
-              <div class="place-info">
-                <h4>화장실을 선택해 주세요</h4>
-                <p>왼쪽 추천 목록에서 화장실을 누르면 상세 정보가 표시됩니다.</p>
+          <div class="filters">
+            <button class="filter-chip active" data-filter="all">전체</button>
+            <button class="filter-chip" data-filter="available">이용 가능</button>
+            <button class="filter-chip" data-filter="clean">청결도 높음</button>
+            <button class="filter-chip" data-filter="password">비밀번호 없음</button>
+          </div>
+
+          <div id="toiletList" class="card-list"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h3>선택한 화장실 정보</h3>
+            <span>상세 화면</span>
+          </div>
+
+          <div id="detailPanel" class="place-card">
+            <div class="place-top">
+              <div class="place-left">
+                <div class="place-icon">🚻</div>
+                <div class="place-info">
+                  <h4>화장실을 선택해 주세요</h4>
+                  <p>추천 목록에서 화장실을 누르면 상세 정보가 표시됩니다.</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="meta-row">
-            <div class="meta-badge">📍 거리 정보</div>
-            <div class="meta-badge">✨ 청결도</div>
-            <div class="meta-badge">🔐 비밀번호</div>
-            <div class="meta-badge">🟢 이용 가능 여부</div>
-          </div>
-
-          <div class="card-actions">
-            <button class="gloss-btn">길찾기</button>
-            <button class="ghost-btn">즐겨찾기</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h3>이용 후기 남기기</h3>
-          <span>입력 화면</span>
-        </div>
-
-        <div class="place-card">
-          <form id="feedbackForm">
-            <label class="stat-label" for="toiletSelect">화장실 선택</label>
-            <select id="toiletSelect" class="text-input" required></select>
-
-            <label class="stat-label" for="cleanlinessSelect">청결도</label>
-            <div class="meta-row" style="margin-bottom: 12px;">
-              <div class="meta-badge">✨ 위생</div>
-              <div class="meta-badge">🫧 냄새</div>
-              <div class="meta-badge">💙 쾌적함</div>
+            <div class="meta-row">
+              <div class="meta-badge">📍 거리 정보</div>
+              <div class="meta-badge">✨ 청결도</div>
+              <div class="meta-badge">🔐 비밀번호</div>
+              <div class="meta-badge">🟢 이용 가능 여부</div>
             </div>
-            <select id="cleanlinessSelect" class="text-input" required>
-              <option value="">선택하세요</option>
-              <option value="5">5점 - 매우 깨끗함</option>
-              <option value="4">4점 - 깔끔함</option>
-              <option value="3">3점 - 보통</option>
-              <option value="2">2점 - 다소 불편함</option>
-              <option value="1">1점 - 매우 불편함</option>
-            </select>
-
-            <label class="stat-label" for="availabilitySelect">이용 가능 여부</label>
-            <select id="availabilitySelect" class="text-input" required>
-              <option value="">선택하세요</option>
-              <option value="available">바로 이용 가능</option>
-              <option value="busy">현재 사용 중</option>
-              <option value="closed">이용 불가</option>
-            </select>
-
-            <label class="stat-label" for="memoInput">한 줄 메모</label>
-            <textarea
-              id="memoInput"
-              class="text-input"
-              rows="4"
-              placeholder="예: 비밀번호 필요 없고 매우 깨끗했어요."
-            ></textarea>
 
             <div class="card-actions">
-              <button type="submit" class="gloss-btn">📝 후기 등록하기</button>
-              <button type="button" class="ghost-btn">💾 임시 저장</button>
+              <button class="gloss-btn" id="detailRouteBtn">길찾기</button>
+              <button class="ghost-btn" id="detailFavBtn">즐겨찾기</button>
             </div>
-          </form>
+          </div>
+        </section>
 
-          <p id="formMessage" class="subtle-note"></p>
-        </div>
+        <section class="section">
+          <div class="section-head">
+            <h3>이용 후기 남기기</h3>
+            <span>입력 화면</span>
+          </div>
+
+          <div class="place-card">
+            <form id="feedbackForm">
+              <label class="stat-label" for="toiletSelect">화장실 선택</label>
+              <select id="toiletSelect" class="text-input" required></select>
+
+              <label class="stat-label" for="cleanlinessSelect">청결도</label>
+              <select id="cleanlinessSelect" class="text-input" required>
+                <option value="">선택하세요</option>
+                <option value="5">5점 - 매우 깨끗함</option>
+                <option value="4">4점 - 깔끔함</option>
+                <option value="3">3점 - 보통</option>
+                <option value="2">2점 - 다소 불편함</option>
+                <option value="1">1점 - 매우 불편함</option>
+              </select>
+
+              <label class="stat-label" for="availabilitySelect">이용 가능 여부</label>
+              <select id="availabilitySelect" class="text-input" required>
+                <option value="">선택하세요</option>
+                <option value="available">바로 이용 가능</option>
+                <option value="busy">현재 사용 중</option>
+                <option value="closed">이용 불가</option>
+              </select>
+
+              <label class="stat-label" for="memoInput">한 줄 메모</label>
+              <textarea
+                id="memoInput"
+                class="text-input"
+                rows="4"
+                placeholder="예: 비밀번호 필요 없고 매우 깨끗했어요."
+              ></textarea>
+
+              <div class="card-actions">
+                <button type="submit" class="gloss-btn">📝 후기 등록하기</button>
+              </div>
+            </form>
+
+            <p id="formMessage" class="subtle-note"></p>
+          </div>
+        </section>
+      </section>
+
+      <!-- 지도 -->
+      <section class="page" id="page-map">
+        <section class="section">
+          <div class="section-head">
+            <h3>지도</h3>
+            <span>map view</span>
+          </div>
+
+          <div class="map-screen">
+            <div class="map-toolbar">
+              <div class="map-chip">📍 내 위치</div>
+              <div class="map-chip">🚻 화장실</div>
+              <div class="map-chip">✨ 추천</div>
+            </div>
+
+            <div class="fake-map">
+              <div class="map-road road-1"></div>
+              <div class="map-road road-2"></div>
+              <div class="map-road road-3"></div>
+
+              <div class="map-block block-1"></div>
+              <div class="map-block block-2"></div>
+              <div class="map-block block-3"></div>
+              <div class="map-block block-4"></div>
+
+              <div class="map-user">💙</div>
+
+              <button class="map-pin pin-1" onclick="showDetail(1)">🚻</button>
+              <button class="map-pin pin-2" onclick="showDetail(2)">🚻</button>
+              <button class="map-pin pin-3" onclick="showDetail(3)">🚻</button>
+              <button class="map-pin pin-4" onclick="showDetail(4)">🚻</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h3>지도 추천 카드</h3>
+            <span>nearby spots</span>
+          </div>
+          <div id="mapCardList" class="card-list"></div>
+        </section>
+      </section>
+
+      <!-- 리뷰 -->
+      <section class="page" id="page-review">
+        <section class="section">
+          <div class="section-head">
+            <h3>리뷰 모아보기</h3>
+            <span>vintage review board</span>
+          </div>
+
+          <div class="review-board">
+            <div class="review-deco">✦</div>
+            <div class="review-deco deco-2">💙</div>
+            <div class="review-deco deco-3">🫧</div>
+
+            <div id="reviewList" class="review-list"></div>
+          </div>
+        </section>
+      </section>
+
+      <!-- 마이 -->
+      <section class="page" id="page-my">
+        <section class="my-profile-card">
+          <div class="profile-badge">MY PAGE</div>
+          <div class="profile-row">
+            <div class="profile-avatar">🩵</div>
+            <div>
+              <h3>은비님의 Toilet Now</h3>
+              <p>빈티지 레트로 무드의 화장실 탐색 노트</p>
+            </div>
+          </div>
+
+          <div class="my-stats">
+            <div class="my-stat">
+              <span>즐겨찾기</span>
+              <strong id="favCount">0</strong>
+            </div>
+            <div class="my-stat">
+              <span>작성 리뷰</span>
+              <strong id="reviewCount">0</strong>
+            </div>
+            <div class="my-stat">
+              <span>최근 선택</span>
+              <strong id="recentToilet">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h3>즐겨찾기 화장실</h3>
+            <span>favorite places</span>
+          </div>
+          <div id="favoriteList" class="card-list"></div>
+        </section>
       </section>
     </div>
 
     <nav class="bottom-nav">
-      <div class="nav-item active">
+      <button class="nav-item active" data-page="home">
         <span class="nav-icon">🏠</span>
         홈
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" data-page="map">
         <span class="nav-icon">🗺️</span>
         지도
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" data-page="review">
         <span class="nav-icon">💬</span>
         리뷰
-      </div>
-      <div class="nav-item">
+      </button>
+      <button class="nav-item" data-page="my">
         <span class="nav-icon">👤</span>
         마이
-      </div>
+      </button>
     </nav>
   </div>
 
@@ -208,14 +303,8 @@
       </div>
       <p class="subtle-note" style="font-size: 13px;">
         이 페이지는 스타트업 코딩입문 과제를 위한 MVP 예시입니다.
-        실제 지도 API와 DB를 연결하기 전, 서비스의 핵심 화면 3개
-        (목록, 상세, 입력)를 먼저 구현한 버전입니다.
+        실제 지도 API와 DB를 연결하기 전, 서비스의 핵심 화면들을 먼저 구현한 버전입니다.
       </p>
-      <div class="meta-row">
-        <div class="meta-badge">📍 위치 기반 탐색</div>
-        <div class="meta-badge">📋 상세 정보 확인</div>
-        <div class="meta-badge">📝 후기 입력</div>
-      </div>
     </div>
   </div>
 
