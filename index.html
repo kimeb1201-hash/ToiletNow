@@ -17,26 +17,25 @@
           <div class="brand-logo">🚽</div>
           <div class="brand-text">
             <h1>Toilet Now</h1>
-            <button type="button" class="ghost-btn" id="openGuideBtn">💬 서비스 소개 보기</button>
             <p>retro blue restroom guide</p>
           </div>
         </div>
-        <button class="icon-btn" id="loginBtn">👤</button>
+        <button type="button" class="icon-btn" id="loginBtn">👤</button>
       </header>
 
       <!-- 홈 -->
       <section class="page active" id="page-home">
         <section class="hero">
           <div class="hero-badge">급한 순간을 위한 APP</div>
-          <h2>가까운 화장실을<br>빠르게 찾아봐~⸝⸝ ᷇࿀ ᷆⸝⸝ </h2>
+          <h2>가까운 화장실을<br>빠르게 찾아봐~⸝⸝ ᷇࿀ ᷆⸝⸝</h2>
           <p>
             ToiletNow는 사용자의 현재 위치를 기준으로 주변 화장실의 거리,
             청결도, 비밀번호 여부, 이용 가능 상태를 한눈에 보여주는 서비스입니다.
           </p>
 
           <div class="hero-actions">
-            <button class="gloss-btn" id="findNearbyBtn">📍 내 주변 화장실 찾기</button>
-            <button class="ghost-btn" id="openGuideBtn">💬 서비스 소개 보기</button>
+            <button type="button" class="gloss-btn" id="findNearbyBtn">📍 내 주변 화장실 찾기</button>
+            <button type="button" class="ghost-btn" id="openGuideBtn">💬 서비스 소개 보기</button>
           </div>
         </section>
 
@@ -86,10 +85,10 @@
           </div>
 
           <div class="filters">
-            <button class="filter-chip active" data-filter="all">전체</button>
-            <button class="filter-chip" data-filter="available">이용 가능</button>
-            <button class="filter-chip" data-filter="clean">청결도 높음</button>
-            <button class="filter-chip" data-filter="password">비밀번호 없음</button>
+            <button type="button" class="filter-chip active" data-filter="all">전체</button>
+            <button type="button" class="filter-chip" data-filter="available">이용 가능</button>
+            <button type="button" class="filter-chip" data-filter="clean">청결도 높음</button>
+            <button type="button" class="filter-chip" data-filter="password">비밀번호 없음</button>
           </div>
 
           <div id="toiletList" class="card-list"></div>
@@ -120,8 +119,8 @@
             </div>
 
             <div class="card-actions">
-              <button class="gloss-btn" id="detailRouteBtn">길찾기</button>
-              <button class="ghost-btn" id="detailFavBtn">즐겨찾기</button>
+              <button type="button" class="gloss-btn" id="detailRouteBtn">길찾기</button>
+              <button type="button" class="ghost-btn" id="detailFavBtn">즐겨찾기</button>
             </div>
           </div>
         </section>
@@ -175,74 +174,74 @@
 
       <!-- 지도 -->
       <section class="page" id="page-map">
-  <section class="section">
-    <div class="section-head">
-      <h3>지도</h3>
-      <span>live location + retro map</span>
-    </div>
+        <section class="section">
+          <div class="section-head">
+            <h3>지도</h3>
+            <span>live location + retro map</span>
+          </div>
 
-    <div class="place-card" style="margin-bottom: 14px;">
-      <div class="section-head" style="margin-bottom: 8px;">
-        <h3 style="font-size:16px;">내 현재 위치</h3>
-        <span id="locationStatus">위치 확인 중...</span>
-      </div>
-      <div class="meta-row">
-        <div class="meta-badge">📍 <span id="currentLocationText">위치 권한을 허용해 주세요</span></div>
-        <div class="meta-badge">🛰️ <span id="currentCoords">좌표 불러오는 중</span></div>
-      </div>
-    </div>
+          <div class="place-card" style="margin-bottom: 14px;">
+            <div class="section-head" style="margin-bottom: 8px;">
+              <h3 style="font-size:16px;">내 현재 위치</h3>
+              <span id="locationStatus">위치 확인 중...</span>
+            </div>
+            <div class="meta-row">
+              <div class="meta-badge">📍 <span id="currentLocationText">위치 권한을 허용해 주세요</span></div>
+              <div class="meta-badge">🛰️ <span id="currentCoords">좌표 불러오는 중</span></div>
+            </div>
+          </div>
 
-    <div class="map-screen">
-      <div class="map-toolbar">
-        <div class="map-chip">📍 내 위치</div>
-        <div class="map-chip">🚻 화장실</div>
-        <div class="map-chip">☕ 카페</div>
-        <div class="map-chip">🚉 역</div>
-        <div class="map-chip">🛍️ 쇼핑</div>
-      </div>
+          <div class="map-screen">
+            <div class="map-toolbar">
+              <div class="map-chip">📍 내 위치</div>
+              <div class="map-chip">🚻 화장실</div>
+              <div class="map-chip">☕ 카페</div>
+              <div class="map-chip">🚉 역</div>
+              <div class="map-chip">🛍️ 쇼핑</div>
+            </div>
 
-      <div class="fake-map">
-        <div class="map-road road-1"></div>
-        <div class="map-road road-2"></div>
-        <div class="map-road road-3"></div>
-        <div class="map-road road-4"></div>
+            <div class="fake-map">
+              <div class="map-road road-1"></div>
+              <div class="map-road road-2"></div>
+              <div class="map-road road-3"></div>
+              <div class="map-road road-4"></div>
 
-        <div class="map-block block-1"></div>
-        <div class="map-block block-2"></div>
-        <div class="map-block block-3"></div>
-        <div class="map-block block-4"></div>
-        <div class="map-block block-5"></div>
+              <div class="map-block block-1"></div>
+              <div class="map-block block-2"></div>
+              <div class="map-block block-3"></div>
+              <div class="map-block block-4"></div>
+              <div class="map-block block-5"></div>
 
-        <div class="map-label label-1">스타필드</div>
-        <div class="map-label label-2">블루보틀</div>
-        <div class="map-label label-3">중앙역 2번 출구</div>
-        <div class="map-label label-4">시청공원</div>
-        <div class="map-label label-5">오피스 타워</div>
+              <div class="map-label label-1">스타필드</div>
+              <div class="map-label label-2">블루보틀</div>
+              <div class="map-label label-3">중앙역 2번 출구</div>
+              <div class="map-label label-4">시청공원</div>
+              <div class="map-label label-5">오피스 타워</div>
 
-        <div class="poi poi-cafe">☕</div>
-        <div class="poi poi-station">🚉</div>
-        <div class="poi poi-park">🌿</div>
-        <div class="poi poi-office">🏢</div>
-        <div class="poi poi-mall">🛍️</div>
+              <div class="poi poi-cafe">☕</div>
+              <div class="poi poi-station">🚉</div>
+              <div class="poi poi-park">🌿</div>
+              <div class="poi poi-office">🏢</div>
+              <div class="poi poi-mall">🛍️</div>
 
-        <div class="map-user" id="mapUserMarker">📍</div>
+              <div class="map-user" id="mapUserMarker">📍</div>
 
-        <button class="map-pin pin-1" onclick="showDetail(1)">🚻</button>
-        <button class="map-pin pin-2" onclick="showDetail(2)">🚻</button>
-        <button class="map-pin pin-3" onclick="showDetail(3)">🚻</button>
-        <button class="map-pin pin-4" onclick="showDetail(4)">🚻</button>
-      </div>
-    </div>
-  </section>
+              <button type="button" class="map-pin pin-1" onclick="showDetail(1)">🚻</button>
+              <button type="button" class="map-pin pin-2" onclick="showDetail(2)">🚻</button>
+              <button type="button" class="map-pin pin-3" onclick="showDetail(3)">🚻</button>
+              <button type="button" class="map-pin pin-4" onclick="showDetail(4)">🚻</button>
+            </div>
+          </div>
+        </section>
 
-  <section class="section">
-    <div class="section-head">
-      <h3>지도 추천 카드</h3>
-      <span>nearby spots</span>
-    </div>
-    <div id="mapCardList" class="card-list"></div>
-  </section>
-</section>
+        <section class="section">
+          <div class="section-head">
+            <h3>지도 추천 카드</h3>
+            <span>nearby spots</span>
+          </div>
+          <div id="mapCardList" class="card-list"></div>
+        </section>
+      </section>
 
       <!-- 리뷰 -->
       <section class="page" id="page-review">
@@ -301,19 +300,19 @@
     </div>
 
     <nav class="bottom-nav">
-      <button class="nav-item active" data-page="home">
+      <button type="button" class="nav-item active" data-page="home">
         <span class="nav-icon">🏠</span>
         홈
       </button>
-      <button class="nav-item" data-page="map">
+      <button type="button" class="nav-item" data-page="map">
         <span class="nav-icon">🗺️</span>
         지도
       </button>
-      <button class="nav-item" data-page="review">
+      <button type="button" class="nav-item" data-page="review">
         <span class="nav-icon">💬</span>
         리뷰
       </button>
-      <button class="nav-item" data-page="my">
+      <button type="button" class="nav-item" data-page="my">
         <span class="nav-icon">👤</span>
         마이
       </button>
@@ -327,7 +326,7 @@
           <h3>Toilet Now MVP</h3>
           <span>서비스 소개</span>
         </div>
-        <button class="ghost-btn" id="closeGuideBtn">닫기</button>
+        <button type="button" class="ghost-btn" id="closeGuideBtn">닫기</button>
       </div>
       <p class="subtle-note" style="font-size: 13px;">
         이 페이지는 스타트업 코딩입문 과제를 위한 MVP 예시입니다.
@@ -336,39 +335,38 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
   <div class="modal hidden" id="adModal">
-  <div class="modal-content place-card ad-modal-card" style="margin: 20px;">
-    <div class="section-head">
-      <div>
-        <h3>오늘의 광고</h3>
-        <span>추천 제휴 매장</span>
+    <div class="modal-content place-card ad-modal-card" style="margin: 20px;">
+      <div class="section-head">
+        <div>
+          <h3>오늘의 광고</h3>
+          <span>추천 제휴 매장</span>
+        </div>
+        <button type="button" class="ghost-btn" id="closeAdBtn">닫기</button>
       </div>
-      <button class="ghost-btn" id="closeAdBtn">닫기</button>
-    </div>
 
-    <div class="ad-badge">☕ EWHA PICK</div>
+      <div class="ad-badge">☕ EWHA PICK</div>
 
-    <h4 class="ad-title">티앙팡: 오후의 홍차</h4>
-    <p class="ad-desc">
-      이화여대 앞에서 만날 수 있는 감성 홍차집입니다. 약 50여가지가 넘는 다양한 홍차를 취향에 맞게 추천해드립니다.
-      <br>
-      <strong>Toilet Now 앱을 통해 방문하면 다과(크렘브륄레/미니 쿠키 세트)를 50% 할인된 가격으로 제공합니다.</strong>
-    </p>
+      <h4 class="ad-title">티앙팡: 오후의 홍차</h4>
+      <p class="ad-desc">
+        이화여대 앞에서 만날 수 있는 감성 홍차집입니다. 약 50여가지가 넘는 다양한 홍차를 취향에 맞게 추천해드립니다.
+        <br>
+        <strong>Toilet Now 앱을 통해 방문하면 다과(크렘브륄레/미니 쿠키 세트)를 50% 할인된 가격으로 제공합니다.</strong>
+      </p>
 
-    <div class="meta-row">
-      <div class="meta-badge">📍 이화여대 앞</div>
-      <div class="meta-badge">🫖 홍차 전문점</div>
-      <div class="meta-badge">🍪 다과 서비스</div>
-    </div>
+      <div class="meta-row">
+        <div class="meta-badge">📍 이화여대 앞</div>
+        <div class="meta-badge">🫖 홍차 전문점</div>
+        <div class="meta-badge">🍪 다과 서비스</div>
+      </div>
 
-    <div class="card-actions">
-      <button class="gloss-btn" id="adVisitBtn">방문 혜택 보기</button>
-      <button class="ghost-btn" id="adLaterBtn">나중에 보기</button>
+      <div class="card-actions">
+        <button type="button" class="gloss-btn" id="adVisitBtn">방문 혜택 보기</button>
+        <button type="button" class="ghost-btn" id="adLaterBtn">나중에 보기</button>
+      </div>
     </div>
   </div>
-</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
-<script src="script.js"></script>
-</body>
