@@ -377,3 +377,41 @@ updateStats();
 updateMyPage();
 initSelect();
 renderDetail(1);
+function initLiveLocation() {
+  const locationText = document.getElementById("currentLocationText");
+  const coordsText = document.getElementById("currentCoords");
+  const statusText = document.getElementById("locationStatus");
+  const userMarker = document.getElementById("mapUserMarker");
+
+  if (!navigator.geolocation) {
+    if (statusText) statusText.textContent = "위치 지원 안 됨";
+    if (locationText) locationText.textContent = "이 브라우저에서는 위치 정보를 사용할 수 없어요";
+    if (coordsText) coordsText.textContent = "-";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude.toFixed(5);
+      const lng = pos.coords.longitude.toFixed(5);
+
+      if (statusText) statusText.textContent = "현재 위치 반영됨";
+      if (locationText) locationText.textContent = "내 현재 위치 기준";
+      if (coordsText) coordsText.textContent = `${lat}, ${lng}`;
+
+      if (userMarker) {
+        userMarker.style.left = "185px";
+        userMarker.style.top = "160px";
+        userMarker.innerHTML = "📍";
+        userMarker.title = `현재 위치: ${lat}, ${lng}`;
+      }
+    },
+    (error) => {
+      if (statusText) statusText.textContent = "위치 권한 필요";
+      if (locationText) locationText.textContent = "위치 권한을 허용하면 현재 위치를 표시할 수 있어요";
+      if (coordsText) coordsText.textContent = "위치 접근 실패";
+
+      console.log("위치 오류:", error);
+    }
+  );
+}initLiveLocation();
