@@ -27,7 +27,7 @@ const toilets = [
     available: true,
     password: false,
     favorite: true,
-    memo: "비누가 없고 수압이 약해요."
+    memo: "비누가 없고 수압이 약하니 종이비누를 챙기세요."
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const toilets = [
 ];
 
 let currentFilter = "all";
-let selectedToiletId = null;
+let selectedToiletId = 1;
 
 const listEl = document.getElementById("toiletList");
 const detailEl = document.getElementById("detailPanel");
@@ -56,6 +56,9 @@ const formMessage = document.getElementById("formMessage");
 const navItems = document.querySelectorAll(".nav-item");
 const pages = document.querySelectorAll(".page");
 const filterButtons = document.querySelectorAll(".filter-chip");
+
+const guideModal = document.getElementById("guideModal");
+const adModal = document.getElementById("adModal");
 
 function getFilteredToilets() {
   const keyword = (searchInput?.value || "").trim().toLowerCase();
@@ -73,6 +76,8 @@ function getFilteredToilets() {
 }
 
 function renderList() {
+  if (!listEl) return;
+
   const data = getFilteredToilets();
   listEl.innerHTML = "";
 
@@ -88,7 +93,7 @@ function renderList() {
             <p>도보 ${t.distance}분 · ${t.available ? "바로 이용 가능" : "현재 사용 중"}</p>
           </div>
         </div>
-        <button class="favorite favorite-toggle" data-id="${t.id}">
+        <button type="button" class="favorite favorite-toggle" data-id="${t.id}">
           ${t.favorite ? "💙" : "🤍"}
         </button>
       </div>
@@ -101,8 +106,8 @@ function renderList() {
       </div>
 
       <div class="card-actions">
-        <button class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
-        <button class="ghost-btn route-btn" data-id="${t.id}">길찾기</button>
+        <button type="button" class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
+        <button type="button" class="ghost-btn route-btn" data-id="${t.id}">길찾기</button>
       </div>
     `;
     listEl.appendChild(card);
@@ -113,8 +118,11 @@ function renderList() {
 }
 
 function renderDetail(id) {
+  if (!detailEl) return;
+
   const t = toilets.find((x) => x.id === id);
   if (!t) return;
+
   selectedToiletId = id;
 
   detailEl.innerHTML = `
@@ -140,8 +148,8 @@ function renderDetail(id) {
     </p>
 
     <div class="card-actions">
-      <button class="gloss-btn route-btn" data-id="${t.id}">길찾기</button>
-      <button class="ghost-btn favorite-toggle" data-id="${t.id}">
+      <button type="button" class="gloss-btn route-btn" data-id="${t.id}">길찾기</button>
+      <button type="button" class="ghost-btn favorite-toggle" data-id="${t.id}">
         ${t.favorite ? "💙 즐겨찾기됨" : "🤍 즐겨찾기"}
       </button>
     </div>
@@ -151,6 +159,8 @@ function renderDetail(id) {
 }
 
 function renderMapCards() {
+  if (!mapCardListEl) return;
+
   mapCardListEl.innerHTML = "";
   toilets.forEach((t) => {
     const card = document.createElement("div");
@@ -173,7 +183,7 @@ function renderMapCards() {
       </div>
 
       <div class="card-actions">
-        <button class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
+        <button type="button" class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
       </div>
     `;
     mapCardListEl.appendChild(card);
@@ -181,6 +191,8 @@ function renderMapCards() {
 }
 
 function renderReviews() {
+  if (!reviewListEl) return;
+
   reviewListEl.innerHTML = "";
   toilets.forEach((t) => {
     const card = document.createElement("div");
@@ -199,6 +211,8 @@ function renderReviews() {
 }
 
 function renderFavorites() {
+  if (!favoriteListEl) return;
+
   const favorites = toilets.filter((t) => t.favorite);
   favoriteListEl.innerHTML = "";
 
@@ -238,27 +252,32 @@ function renderFavorites() {
 }
 
 function updateStats() {
-  document.getElementById("nearbyCount").innerText = toilets.length + "개";
-  document.getElementById("availableCount").innerText =
-    toilets.filter((t) => t.available).length + "개";
+  const nearby = document.getElementById("nearbyCount");
+  const available = document.getElementById("availableCount");
+  const avgClean = document.getElementById("avgCleanliness");
 
-  const avg =
-    toilets.reduce((sum, t) => sum + t.cleanliness, 0) / toilets.length;
-  document.getElementById("avgCleanliness").innerText = avg.toFixed(1);
+  if (nearby) nearby.innerText = toilets.length + "개";
+  if (available) available.innerText = toilets.filter((t) => t.available).length + "개";
+
+  const avg = toilets.reduce((sum, t) => sum + t.cleanliness, 0) / toilets.length;
+  if (avgClean) avgClean.innerText = avg.toFixed(1);
 }
 
 function updateMyPage() {
-  document.getElementById("favCount").innerText =
-    toilets.filter((t) => t.favorite).length;
-  document.getElementById("reviewCount").innerText =
-    toilets.filter((t) => t.memo && t.memo.trim() !== "").length;
+  const favCount = document.getElementById("favCount");
+  const reviewCount = document.getElementById("reviewCount");
+  const recentToilet = document.getElementById("recentToilet");
 
-  const recentToilet = toilets.find((t) => t.id === selectedToiletId);
-  document.getElementById("recentToilet").innerText =
-    recentToilet ? recentToilet.name.split(" ")[0] : "-";
+  if (favCount) favCount.innerText = toilets.filter((t) => t.favorite).length;
+  if (reviewCount) reviewCount.innerText = toilets.filter((t) => t.memo && t.memo.trim() !== "").length;
+
+  const recent = toilets.find((t) => t.id === selectedToiletId);
+  if (recentToilet) recentToilet.innerText = recent ? recent.name.split(" ")[0] : "-";
 }
 
 function initSelect() {
+  if (!toiletSelect) return;
+
   toiletSelect.innerHTML = `<option value="">선택하세요</option>`;
   toilets.forEach((t) => {
     const option = document.createElement("option");
@@ -279,18 +298,54 @@ function switchPage(pageName) {
 function toggleFavorite(id) {
   const t = toilets.find((x) => x.id === id);
   if (!t) return;
-  t.favorite = !t.favorite;
 
+  t.favorite = !t.favorite;
   renderList();
   renderDetail(selectedToiletId || id);
   renderFavorites();
   updateMyPage();
 }
 
+function initLiveLocation() {
+  const locationText = document.getElementById("currentLocationText");
+  const coordsText = document.getElementById("currentCoords");
+  const statusText = document.getElementById("locationStatus");
+  const userMarker = document.getElementById("mapUserMarker");
+
+  if (!navigator.geolocation) {
+    if (statusText) statusText.textContent = "위치 지원 안 됨";
+    if (locationText) locationText.textContent = "이 브라우저에서는 위치 정보를 사용할 수 없어요";
+    if (coordsText) coordsText.textContent = "-";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude.toFixed(5);
+      const lng = pos.coords.longitude.toFixed(5);
+
+      if (statusText) statusText.textContent = "현재 위치 반영됨";
+      if (locationText) locationText.textContent = "내 현재 위치 기준";
+      if (coordsText) coordsText.textContent = `${lat}, ${lng}`;
+
+      if (userMarker) {
+        userMarker.innerHTML = "📍";
+        userMarker.title = `현재 위치: ${lat}, ${lng}`;
+      }
+    },
+    () => {
+      if (statusText) statusText.textContent = "위치 권한 필요";
+      if (locationText) locationText.textContent = "위치 권한을 허용하면 현재 위치를 표시할 수 있어요";
+      if (coordsText) coordsText.textContent = "위치 접근 실패";
+    }
+  );
+}
+
 document.addEventListener("click", (e) => {
   const nav = e.target.closest(".nav-item");
   if (nav) {
     switchPage(nav.dataset.page);
+    return;
   }
 
   const detailBtn = e.target.closest(".detail-btn");
@@ -298,12 +353,14 @@ document.addEventListener("click", (e) => {
     const id = Number(detailBtn.dataset.id);
     renderDetail(id);
     switchPage("home");
+    return;
   }
 
   const favoriteBtn = e.target.closest(".favorite-toggle");
   if (favoriteBtn) {
     const id = Number(favoriteBtn.dataset.id);
     toggleFavorite(id);
+    return;
   }
 
   const routeBtn = e.target.closest(".route-btn");
@@ -328,10 +385,10 @@ filterButtons.forEach((btn) => {
 form?.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const id = Number(document.getElementById("toiletSelect").value);
-  const cleanliness = Number(document.getElementById("cleanlinessSelect").value);
-  const availability = document.getElementById("availabilitySelect").value;
-  const memo = document.getElementById("memoInput").value.trim();
+  const id = Number(document.getElementById("toiletSelect")?.value);
+  const cleanliness = Number(document.getElementById("cleanlinessSelect")?.value);
+  const availability = document.getElementById("availabilitySelect")?.value;
+  const memo = document.getElementById("memoInput")?.value.trim();
 
   const t = toilets.find((x) => x.id === id);
   if (!t) return;
@@ -341,7 +398,7 @@ form?.addEventListener("submit", (e) => {
   if (availability === "busy" || availability === "closed") t.available = false;
   if (memo) t.memo = memo;
 
-  formMessage.textContent = "후기가 등록되었어요 💙";
+  if (formMessage) formMessage.textContent = "후기가 등록되었어요 💙";
   form.reset();
 
   renderList();
@@ -357,22 +414,25 @@ document.getElementById("findNearbyBtn")?.addEventListener("click", () => {
 });
 
 document.getElementById("openGuideBtn")?.addEventListener("click", () => {
-  document.getElementById("guideModal")?.classList.remove("hidden");
+  guideModal?.classList.remove("hidden");
+  adModal?.classList.add("hidden");
 });
 
-
-  document.getElementById("adModal")?.classList.remove("hidden");
-  document.getElementById("closeAdBtn")?.addEventListener("click", () => {
-  document.getElementById("adModal")?.classList.add("hidden");
+document.getElementById("closeGuideBtn")?.addEventListener("click", () => {
+  guideModal?.classList.add("hidden");
+  adModal?.classList.remove("hidden");
 });
 
+document.getElementById("closeAdBtn")?.addEventListener("click", () => {
+  adModal?.classList.add("hidden");
+});
 
+document.getElementById("adLaterBtn")?.addEventListener("click", () => {
+  adModal?.classList.add("hidden");
 });
 
 document.getElementById("adVisitBtn")?.addEventListener("click", () => {
-  alert("티앙팡: 오후의 홍차\nToilet Now 앱 방문 혜택: 다과 서비스 제공");
-});
-});
+  alert("티앙팡: 오후의 홍차\nToilet Now 앱을 통해 방문하면 다과를 서비스로 제공합니다.");
 });
 
 window.showDetail = function (id) {
@@ -388,70 +448,5 @@ updateStats();
 updateMyPage();
 initSelect();
 renderDetail(1);
-function initLiveLocation() {
-  const locationText = document.getElementById("currentLocationText");
-  const coordsText = document.getElementById("currentCoords");
-  const statusText = document.getElementById("locationStatus");
-  const userMarker = document.getElementById("mapUserMarker");
-
-  if (!navigator.geolocation) {
-    if (statusText) statusText.textContent = "위치 지원 안 됨";
-    if (locationText) locationText.textContent = "이 브라우저에서는 위치 정보를 사용할 수 없어요";
-    if (coordsText) coordsText.textContent = "-";
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    (pos) => {
-      const lat = pos.coords.latitude.toFixed(5);
-      const lng = pos.coords.longitude.toFixed(5);
-
-      if (statusText) statusText.textContent = "현재 위치 반영됨";
-      if (locationText) locationText.textContent = "내 현재 위치 기준";
-      if (coordsText) coordsText.textContent = `${lat}, ${lng}`;
-
-      if (userMarker) {
-        userMarker.style.left = "185px";
-        userMarker.style.top = "160px";
-        userMarker.innerHTML = "📍";
-        userMarker.title = `현재 위치: ${lat}, ${lng}`;
-      }
-    },
-    (error) => {
-      if (statusText) statusText.textContent = "위치 권한 필요";
-      if (locationText) locationText.textContent = "위치 권한을 허용하면 현재 위치를 표시할 수 있어요";
-      if (coordsText) coordsText.textContent = "위치 접근 실패";
-
-      console.log("위치 오류:", error);
-    }
-  );
-}initLiveLocation();
-const guideModal = document.getElementById("guideModal");
-const adModal = document.getElementById("adModal");
-
-// 서비스 소개 열기
-document.getElementById("openGuideBtn")?.addEventListener("click", () => {
-  guideModal?.classList.remove("hidden");
-  adModal?.classList.add("hidden");
-});
-
-// 서비스 소개 닫기 → 광고 열기
-document.getElementById("closeGuideBtn")?.addEventListener("click", () => {
-  guideModal?.classList.add("hidden");
-  adModal?.classList.remove("hidden");
-});
-
-// 광고 닫기
-document.getElementById("closeAdBtn")?.addEventListener("click", () => {
-  adModal?.classList.add("hidden");
-});
-
-// 광고 나중에 보기
-document.getElementById("adLaterBtn")?.addEventListener("click", () => {
-  adModal?.classList.add("hidden");
-});
-
-// 광고 버튼
-document.getElementById("adVisitBtn")?.addEventListener("click", () => {
-  alert("티앙팡: 오후의 홍차\nToilet Now 방문 시 다과 서비스 제공");
-});
+initLiveLocation();
+switchPage("home");
