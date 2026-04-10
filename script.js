@@ -360,15 +360,13 @@ document.getElementById("openGuideBtn")?.addEventListener("click", () => {
   document.getElementById("guideModal")?.classList.remove("hidden");
 });
 
-document.getElementById("closeGuideBtn")?.addEventListener("click", () => {
-  document.getElementById("guideModal")?.classList.add("hidden");
+
   document.getElementById("adModal")?.classList.remove("hidden");
   document.getElementById("closeAdBtn")?.addEventListener("click", () => {
   document.getElementById("adModal")?.classList.add("hidden");
 });
 
-document.getElementById("adLaterBtn")?.addEventListener("click", () => {
-  document.getElementById("adModal")?.classList.add("hidden");
+
 });
 
 document.getElementById("adVisitBtn")?.addEventListener("click", () => {
@@ -428,3 +426,32 @@ function initLiveLocation() {
     }
   );
 }initLiveLocation();
+const guideModal = document.getElementById("guideModal");
+const adModal = document.getElementById("adModal");
+
+// 서비스 소개 열기
+document.getElementById("openGuideBtn")?.addEventListener("click", () => {
+  guideModal?.classList.remove("hidden");
+  adModal?.classList.add("hidden");
+});
+
+// 서비스 소개 닫기 → 광고 열기
+document.getElementById("closeGuideBtn")?.addEventListener("click", () => {
+  guideModal?.classList.add("hidden");
+  adModal?.classList.remove("hidden");
+});
+
+// 광고 닫기
+document.getElementById("closeAdBtn")?.addEventListener("click", () => {
+  adModal?.classList.add("hidden");
+});
+
+// 광고 나중에 보기
+document.getElementById("adLaterBtn")?.addEventListener("click", () => {
+  adModal?.classList.add("hidden");
+});
+
+// 광고 버튼
+document.getElementById("adVisitBtn")?.addEventListener("click", () => {
+  alert("티앙팡: 오후의 홍차\nToilet Now 방문 시 다과 서비스 제공");
+});
