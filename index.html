@@ -174,47 +174,74 @@
 
       <!-- 지도 -->
       <section class="page" id="page-map">
-        <section class="section">
-          <div class="section-head">
-            <h3>지도</h3>
-            <span>map view</span>
-          </div>
+  <section class="section">
+    <div class="section-head">
+      <h3>지도</h3>
+      <span>live location + retro map</span>
+    </div>
 
-          <div class="map-screen">
-            <div class="map-toolbar">
-              <div class="map-chip">📍 내 위치</div>
-              <div class="map-chip">🚻 화장실</div>
-              <div class="map-chip">✨ 추천</div>
-            </div>
+    <div class="place-card" style="margin-bottom: 14px;">
+      <div class="section-head" style="margin-bottom: 8px;">
+        <h3 style="font-size:16px;">내 현재 위치</h3>
+        <span id="locationStatus">위치 확인 중...</span>
+      </div>
+      <div class="meta-row">
+        <div class="meta-badge">📍 <span id="currentLocationText">위치 권한을 허용해 주세요</span></div>
+        <div class="meta-badge">🛰️ <span id="currentCoords">좌표 불러오는 중</span></div>
+      </div>
+    </div>
 
-            <div class="fake-map">
-              <div class="map-road road-1"></div>
-              <div class="map-road road-2"></div>
-              <div class="map-road road-3"></div>
+    <div class="map-screen">
+      <div class="map-toolbar">
+        <div class="map-chip">📍 내 위치</div>
+        <div class="map-chip">🚻 화장실</div>
+        <div class="map-chip">☕ 카페</div>
+        <div class="map-chip">🚉 역</div>
+        <div class="map-chip">🛍️ 쇼핑</div>
+      </div>
 
-              <div class="map-block block-1"></div>
-              <div class="map-block block-2"></div>
-              <div class="map-block block-3"></div>
-              <div class="map-block block-4"></div>
+      <div class="fake-map">
+        <div class="map-road road-1"></div>
+        <div class="map-road road-2"></div>
+        <div class="map-road road-3"></div>
+        <div class="map-road road-4"></div>
 
-              <div class="map-user">💙</div>
+        <div class="map-block block-1"></div>
+        <div class="map-block block-2"></div>
+        <div class="map-block block-3"></div>
+        <div class="map-block block-4"></div>
+        <div class="map-block block-5"></div>
 
-              <button class="map-pin pin-1" onclick="showDetail(1)">🚻</button>
-              <button class="map-pin pin-2" onclick="showDetail(2)">🚻</button>
-              <button class="map-pin pin-3" onclick="showDetail(3)">🚻</button>
-              <button class="map-pin pin-4" onclick="showDetail(4)">🚻</button>
-            </div>
-          </div>
-        </section>
+        <div class="map-label label-1">스타필드</div>
+        <div class="map-label label-2">블루보틀</div>
+        <div class="map-label label-3">중앙역 2번 출구</div>
+        <div class="map-label label-4">시청공원</div>
+        <div class="map-label label-5">오피스 타워</div>
 
-        <section class="section">
-          <div class="section-head">
-            <h3>지도 추천 카드</h3>
-            <span>nearby spots</span>
-          </div>
-          <div id="mapCardList" class="card-list"></div>
-        </section>
-      </section>
+        <div class="poi poi-cafe">☕</div>
+        <div class="poi poi-station">🚉</div>
+        <div class="poi poi-park">🌿</div>
+        <div class="poi poi-office">🏢</div>
+        <div class="poi poi-mall">🛍️</div>
+
+        <div class="map-user" id="mapUserMarker">📍</div>
+
+        <button class="map-pin pin-1" onclick="showDetail(1)">🚻</button>
+        <button class="map-pin pin-2" onclick="showDetail(2)">🚻</button>
+        <button class="map-pin pin-3" onclick="showDetail(3)">🚻</button>
+        <button class="map-pin pin-4" onclick="showDetail(4)">🚻</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h3>지도 추천 카드</h3>
+      <span>nearby spots</span>
+    </div>
+    <div id="mapCardList" class="card-list"></div>
+  </section>
+</section>
 
       <!-- 리뷰 -->
       <section class="page" id="page-review">
@@ -239,7 +266,7 @@
         <section class="my-profile-card">
           <div class="profile-badge">MY PAGE</div>
           <div class="profile-row">
-            <div class="profile-avatar">🩵</div>
+            <div class="profile-avatar">🧏🏻‍♀️</div>
             <div>
               <h3>은비님의 Toilet Now</h3>
               <p>빈티지 레트로 무드의 화장실 탐색 APP</p>
