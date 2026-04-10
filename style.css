@@ -790,11 +790,27 @@ body {
   box-shadow: 0 8px 16px rgba(92, 156, 255, 0.08);
 }
 
-.label-1 { top: 30px; left: 34px; }
-.label-2 { top: 108px; right: 38px; }
-.label-3 { top: 188px; left: 132px; }
-.label-4 { bottom: 34px; right: 44px; }
-.label-5 { bottom: 104px; left: 34px; }
+.label-1 { top: 28px; left: 26px; }
+.label-2 { top: 122px; right: 24px; }
+.label-3 { top: 196px; left: 122px; }
+.label-4 { bottom: 26px; right: 26px; }
+.label-5 { bottom: 128px; left: 18px; }
+
+.poi-cafe { top: 70px; right: 78px; }
+.poi-station { top: 176px; left: 212px; }
+.poi-park { bottom: 34px; right: 118px; }
+.poi-office { bottom: 120px; left: 78px; }
+.poi-mall { top: 54px; left: 138px; }
+.map-label {
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.poi,
+.map-pin,
+#mapUserMarker {
+  z-index: 3;
+}
 
 .poi {
   position: absolute;
