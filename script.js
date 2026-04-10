@@ -7,7 +7,7 @@ const toilets = [
     available: true,
     password: false,
     favorite: false,
-    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요."
+    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요. 향기도 좋고 엄청 고급져요."
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const toilets = [
     available: false,
     password: true,
     favorite: false,
-    memo: "위치는 좋지만 사람이 많은 편이에요."
+    memo: "휴지가 없는 칸이 몇 개 있어요."
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const toilets = [
     available: true,
     password: false,
     favorite: true,
-    memo: "무난하고 찾기 쉬운 편이에요."
+    memo: "비누가 없고 수압이 약해요."
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const toilets = [
     available: true,
     password: true,
     favorite: false,
-    memo: "청결도 높고 시설이 깔끔했어요."
+    memo: "청결도 높지만 양변기가 몇 개 없고 악취가 납니다 ㅠㅠ."
   }
 ];
 
