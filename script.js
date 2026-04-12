@@ -438,6 +438,9 @@ document.getElementById("adVisitBtn")?.addEventListener("click", () => {
 window.showDetail = function (id) {
   renderDetail(id);
   switchPage("home");
+  document.getElementById("adVisitBtnFixed")?.addEventListener("click", () => {
+  alert("티앙팡: 오후의 홍차\nToilet Now 앱 방문 시 다과 50% 할인 혜택 제공");
+});
 };
 
 renderList();
