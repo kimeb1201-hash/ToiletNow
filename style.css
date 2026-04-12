@@ -934,3 +934,8 @@ body {
   width: min(420px, 100%);
   margin: 0 !important;
 }
+.ad-card-fixed {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(92, 156, 255, 0.12);
+}
