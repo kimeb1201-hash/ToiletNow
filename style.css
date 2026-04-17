@@ -948,47 +948,53 @@ body {
 
 .ewha-flower-character {
   position: relative;
-  width: 92px;
-  height: 92px;
+  width: 96px;
+  height: 96px;
   flex-shrink: 0;
+  animation: flowerFloat 2.8s ease-in-out infinite;
+  transform-origin: center bottom;
 }
 
 .flower-face {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   transform: translate(-50%, -50%);
-  background: #fffdfd;
-  border: 2px solid #d7e8ff;
+  background: linear-gradient(180deg, #ffffff 0%, #f3fffe 100%);
+  border: 2px solid #b7ebe6;
   border-radius: 50%;
   z-index: 3;
-  box-shadow: 0 6px 14px rgba(120, 180, 255, 0.15);
+  box-shadow:
+    0 8px 18px rgba(67, 176, 170, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.95);
 }
 
 .flower-petal {
   position: absolute;
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
-  border: 2px solid #d7e8ff;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(180deg, #dcfffb 0%, #a7efe8 55%, #6ed6cf 100%);
+  border: 2px solid #97ddd7;
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(120, 180, 255, 0.1);
+  box-shadow:
+    0 6px 14px rgba(69, 180, 173, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.72);
 }
 
-.petal-1 { top: 2px; left: 29px; }
-.petal-2 { top: 20px; left: 58px; }
-.petal-3 { top: 52px; left: 47px; }
-.petal-4 { top: 52px; left: 11px; }
-.petal-5 { top: 20px; left: 0px; }
+.petal-1 { top: 1px; left: 30px; }
+.petal-2 { top: 20px; left: 60px; }
+.petal-3 { top: 54px; left: 48px; }
+.petal-4 { top: 54px; left: 12px; }
+.petal-5 { top: 20px; left: -1px; }
 
 .eye {
   position: absolute;
   top: 16px;
   width: 5px;
   height: 5px;
-  background: #2f4263;
+  background: #2e4c5f;
   border-radius: 50%;
 }
 
@@ -1002,18 +1008,34 @@ body {
   width: 12px;
   height: 6px;
   transform: translateX(-50%);
-  border-bottom: 2px solid #2f4263;
+  border-bottom: 2px solid #2e4c5f;
   border-radius: 0 0 10px 10px;
 }
+
+.flower-face::before,
+.flower-face::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  width: 7px;
+  height: 4px;
+  background: rgba(255, 176, 196, 0.55);
+  border-radius: 999px;
+}
+
+.flower-face::before { left: 7px; }
+.flower-face::after { right: 7px; }
 
 .ewha-speech-bubble {
   position: relative;
   flex: 1;
-  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
-  border: 2px solid #d8ebff;
+  background: linear-gradient(180deg, #ffffff 0%, #eefefd 100%);
+  border: 2px solid #c6efea;
   border-radius: 24px;
   padding: 16px 18px;
-  box-shadow: 0 10px 20px rgba(120, 180, 255, 0.12);
+  box-shadow:
+    0 10px 22px rgba(83, 182, 176, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
 .ewha-speech-bubble::before {
@@ -1023,9 +1045,9 @@ body {
   bottom: 18px;
   width: 18px;
   height: 18px;
-  background: #f3f9ff;
-  border-left: 2px solid #d8ebff;
-  border-bottom: 2px solid #d8ebff;
+  background: #f2fffd;
+  border-left: 2px solid #c6efea;
+  border-bottom: 2px solid #c6efea;
   transform: rotate(45deg);
 }
 
@@ -1033,9 +1055,27 @@ body {
   margin: 0;
   font-size: 14px;
   line-height: 1.75;
-  color: #6f7f99;
+  color: #667c91;
 }
 
 .ewha-speech-bubble strong {
-  color: #2d6fd2;
+  color: #2aa59d;
+}
+
+@keyframes flowerFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
