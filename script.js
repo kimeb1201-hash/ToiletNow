@@ -7,7 +7,8 @@ const toilets = [
     available: true,
     password: false,
     favorite: false,
-    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요. 향기도 좋고 엄청 고급져요."
+    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요. 향기도 좋고 엄청 고급져요.",
+    image: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=900&q=80"
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ const toilets = [
     available: false,
     password: true,
     favorite: false,
-    memo: "휴지가 없는 칸이 몇 개 있어요."
+    memo: "휴지가 없는 칸이 몇 개 있어요.",
+    image: "https://images.unsplash.com/photo-1564540574859-0dfb6398594d?auto=format&fit=crop&w=900&q=80"
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ const toilets = [
     available: true,
     password: false,
     favorite: true,
-    memo: "비누가 없고 수압이 약하니 종이비누를 챙기세요."
+    memo: "비누가 없고 수압이 약하니 종이비누를 챙기세요.",
+    image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80"
   },
   {
     id: 4,
@@ -37,10 +40,13 @@ const toilets = [
     available: true,
     password: true,
     favorite: false,
-    memo: "청결도 높지만 양변기가 몇 개 없고 악취가 납니다 ㅠㅠ."
+    memo: "청결도 높지만 양변기가 몇 개 없고 악취가 납니다 ㅠㅠ.",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80"
   }
 ];
-
+  },
+  {
+    
 let currentFilter = "all";
 let selectedToiletId = 1;
 
