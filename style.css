@@ -939,3 +939,103 @@ body {
   border: 1px solid rgba(130, 190, 255, 0.2);
   box-shadow: 0 18px 40px rgba(92, 156, 255, 0.12);
 }
+.ewha-guide-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin: 18px 0 22px;
+}
+
+.ewha-flower-character {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  flex-shrink: 0;
+}
+
+.flower-face {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46px;
+  height: 46px;
+  transform: translate(-50%, -50%);
+  background: #fffdfd;
+  border: 2px solid #d7e8ff;
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 6px 14px rgba(120, 180, 255, 0.15);
+}
+
+.flower-petal {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+  border: 2px solid #d7e8ff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(120, 180, 255, 0.1);
+}
+
+.petal-1 { top: 2px; left: 29px; }
+.petal-2 { top: 20px; left: 58px; }
+.petal-3 { top: 52px; left: 47px; }
+.petal-4 { top: 52px; left: 11px; }
+.petal-5 { top: 20px; left: 0px; }
+
+.eye {
+  position: absolute;
+  top: 16px;
+  width: 5px;
+  height: 5px;
+  background: #2f4263;
+  border-radius: 50%;
+}
+
+.eye.left { left: 13px; }
+.eye.right { right: 13px; }
+
+.mouth {
+  position: absolute;
+  left: 50%;
+  bottom: 11px;
+  width: 12px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-bottom: 2px solid #2f4263;
+  border-radius: 0 0 10px 10px;
+}
+
+.ewha-speech-bubble {
+  position: relative;
+  flex: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 2px solid #d8ebff;
+  border-radius: 24px;
+  padding: 16px 18px;
+  box-shadow: 0 10px 20px rgba(120, 180, 255, 0.12);
+}
+
+.ewha-speech-bubble::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  bottom: 18px;
+  width: 18px;
+  height: 18px;
+  background: #f3f9ff;
+  border-left: 2px solid #d8ebff;
+  border-bottom: 2px solid #d8ebff;
+  transform: rotate(45deg);
+}
+
+.ewha-speech-bubble p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #6f7f99;
+}
+
+.ewha-speech-bubble strong {
+  color: #2d6fd2;
+}
