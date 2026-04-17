@@ -132,7 +132,12 @@ function renderDetail(id) {
   selectedToiletId = id;
 
   detailEl.innerHTML = `
-    <div class="place-top">
+    <div class="detail-photo-wrap">
+      <img class="detail-photo" src="${t.image}" alt="${t.name} 내부 사진" />
+      <div class="detail-photo-badge">${t.available ? "🟢 바로 이용 가능" : "🔴 현재 사용 중"}</div>
+    </div>
+
+    <div class="detail-header">
       <div class="place-left">
         <div class="place-icon">${t.available ? "🚻" : "⏳"}</div>
         <div class="place-info">
@@ -142,16 +147,32 @@ function renderDetail(id) {
       </div>
     </div>
 
-    <div class="meta-row">
-      <div class="meta-badge">📍 거리 ${t.distance}분</div>
-      <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
-      <div class="meta-badge">${t.password ? "🔐 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
-      <div class="meta-badge">${t.available ? "🟢 바로 이용 가능" : "🔴 현재 이용 어려움"}</div>
+    <div class="detail-grid">
+      <div class="detail-info-card">
+        <span class="detail-label">📍 거리</span>
+        <strong>${t.distance}분</strong>
+      </div>
+      <div class="detail-info-card">
+        <span class="detail-label">✨ 청결도</span>
+        <strong>${t.cleanliness}</strong>
+      </div>
+      <div class="detail-info-card">
+        <span class="detail-label">🔐 비밀번호</span>
+        <strong>${t.password ? "필요" : "없음"}</strong>
+      </div>
+      <div class="detail-info-card">
+        <span class="detail-label">🚦 상태</span>
+        <strong>${t.available ? "사용 가능" : "사용 중"}</strong>
+      </div>
     </div>
 
-    <p style="margin-top:12px; font-size:13px; color:#6c7b91; line-height:1.6;">
-      ${t.memo || "등록된 후기가 아직 없어요."}
-    </p>
+    <div class="detail-review-box">
+      <div class="section-head" style="margin-bottom: 8px;">
+        <h3 style="font-size:16px;">이용 후기</h3>
+        <span>review</span>
+      </div>
+      <p class="detail-review-text">${t.memo || "등록된 후기가 아직 없어요."}</p>
+    </div>
 
     <div class="card-actions">
       <button type="button" class="gloss-btn route-btn" data-id="${t.id}">길찾기</button>
