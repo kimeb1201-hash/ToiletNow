@@ -1,489 +1,941 @@
-const toilets = [
-  {
-    id: 1,
-    name: "스타필드 1층 화장실",
-    distance: 2,
-    cleanliness: 4.8,
-    available: true,
-    password: false,
-    favorite: false,
-    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요. 향기도 좋고 엄청 고급져요.",
-    image: "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 2,
-    name: "중앙역 2번 출구 화장실",
-    distance: 4,
-    cleanliness: 4.2,
-    available: false,
-    password: true,
-    favorite: false,
-    memo: "휴지가 없는 칸이 몇 개 있어요.",
-    image: "https://images.unsplash.com/photo-1564540574859-0dfb6398594d?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 3,
-    name: "시청 공원 화장실",
-    distance: 3,
-    cleanliness: 3.9,
-    available: true,
-    password: false,
-    favorite: true,
-    memo: "비누가 없고 수압이 약하니 종이비누를 챙기세요.",
-    image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    id: 4,
-    name: "롯데몰 3층 화장실",
-    distance: 5,
-    cleanliness: 4.5,
-    available: true,
-    password: true,
-    favorite: false,
-    memo: "청결도 높지만 양변기가 몇 개 없고 악취가 납니다 ㅠㅠ.",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80"
+:root {
+  --bg: #f8fbff;
+  --bg-2: #eef6ff;
+  --white: #ffffff;
+  --blue-1: #dff1ff;
+  --blue-2: #bfe3ff;
+  --blue-3: #7cc2ff;
+  --blue-4: #4f96ff;
+  --blue-5: #2d6fd2;
+  --text: #1d2c43;
+  --text-soft: #6c7b91;
+  --line: rgba(120, 180, 255, 0.22);
+  --shadow: 0 10px 30px rgba(92, 156, 255, 0.12);
+  --shadow-soft: 0 8px 18px rgba(92, 156, 255, 0.08);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", "SUIT", "Noto Sans KR", sans-serif;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(180, 225, 255, 0.55), transparent 18%),
+    linear-gradient(180deg, #fbfdff 0%, #f3f8ff 100%);
+  color: var(--text);
+}
+
+body {
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 20px 60px rgba(89, 150, 235, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.app::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(146, 211, 255, 0.5), transparent 65%);
+  pointer-events: none;
+}
+
+.container {
+  padding: 16px 16px 96px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #cde9ff 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  font-size: 22px;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: -0.02em;
+}
+
+.brand-text p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffffff 0%, #dceeff 100%);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: var(--blue-5);
+}
+
+.hero {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(228,243,255,0.88) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 20px 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "✦";
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  font-size: 26px;
+  color: #86c6ff;
+  opacity: 0.8;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #dff2ff 100%);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-5);
+  margin-bottom: 12px;
+}
+
+.hero h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.hero p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.gloss-btn,
+.ghost-btn {
+  border: 0;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.gloss-btn {
+  background: linear-gradient(180deg, #8fd0ff 0%, #4d9dff 55%, #2e73d7 100%);
+  color: white;
+  box-shadow: 0 10px 20px rgba(63, 126, 221, 0.24);
+}
+
+.ghost-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #eaf5ff 100%);
+  border: 1px solid var(--line);
+  color: var(--blue-5);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.search-box span {
+  font-size: 18px;
+}
+
+.search-box input {
+  border: 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.search-box input::placeholder {
+  color: #8ea2bc;
+}
+
+.quick-icons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quick-item {
+  background: linear-gradient(180deg, #ffffff 0%, #e6f4ff 100%);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 12px 8px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.quick-item .bubble {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #cbe7ff 100%);
+  border: 1px solid var(--line);
+  font-size: 18px;
+}
+
+.quick-item p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #587096;
+  font-weight: 600;
+}
+
+.section {
+  margin-bottom: 18px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.section-head h3 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.section-head span {
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px 12px;
+  box-shadow: var(--shadow-soft);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--blue-5);
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-chip {
+  white-space: nowrap;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #eaf5ff 100%);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 700;
+  color: #5d79a6;
+}
+
+.filter-chip.active {
+  color: var(--blue-5);
+  background: linear-gradient(180deg, #ffffff 0%, #d5ecff 100%);
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.place-card {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 15px;
+  box-shadow: var(--shadow-soft);
+}
+
+.place-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.place-left {
+  display: flex;
+  gap: 12px;
+}
+
+.place-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #cfe9ff 100%);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  box-shadow: var(--shadow-soft);
+  flex-shrink: 0;
+}
+
+.place-info h4 {
+  margin: 2px 0 6px;
+  font-size: 16px;
+}
+
+.place-info p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.favorite {
+  font-size: 20px;
+  color: var(--blue-5);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.meta-badge {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #e9f5ff 100%);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  color: #4f6b92;
+  font-weight: 700;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.card-actions button {
+  flex: 1;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  width: calc(100% - 24px);
+  max-width: 406px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 10px;
+  box-shadow: 0 12px 30px rgba(96, 152, 235, 0.16);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.nav-item {
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 16px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+.nav-item .nav-icon {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.nav-item.active {
+  background: linear-gradient(180deg, #ffffff 0%, #d9eeff 100%);
+  color: var(--blue-5);
+  font-weight: 700;
+}
+
+@media (max-width: 390px) {
+  .hero h2 {
+    font-size: 26px;
   }
-];
 
-let currentFilter = "all";
-let selectedToiletId = 1;
-
-document.addEventListener("DOMContentLoaded", () => {
-  const listEl = document.getElementById("toiletList");
-  const detailEl = document.getElementById("detailPanel");
-  const mapCardListEl = document.getElementById("mapCardList");
-  const reviewListEl = document.getElementById("reviewList");
-  const favoriteListEl = document.getElementById("favoriteList");
-  const searchInput = document.getElementById("searchInput");
-  const form = document.getElementById("feedbackForm");
-  const toiletSelect = document.getElementById("toiletSelect");
-  const formMessage = document.getElementById("formMessage");
-  const navItems = document.querySelectorAll(".nav-item");
-  const pages = document.querySelectorAll(".page");
-  const filterButtons = document.querySelectorAll(".filter-chip");
-
-  const guideModal = document.getElementById("guideModal");
-  const adModal = document.getElementById("adModal");
-
-  const openGuideBtn = document.getElementById("openGuideBtn");
-  const closeGuideBtn = document.getElementById("closeGuideBtn");
-  const closeAdBtn = document.getElementById("closeAdBtn");
-  const adLaterBtn = document.getElementById("adLaterBtn");
-  const adVisitBtn = document.getElementById("adVisitBtn");
-  const adVisitBtnFixed = document.getElementById("adVisitBtnFixed");
-  const findNearbyBtn = document.getElementById("findNearbyBtn");
-
-  function getFilteredToilets() {
-    const keyword = (searchInput?.value || "").trim().toLowerCase();
-
-    return toilets.filter((t) => {
-      const keywordMatch = t.name.toLowerCase().includes(keyword);
-
-      let filterMatch = true;
-      if (currentFilter === "available") filterMatch = t.available;
-      if (currentFilter === "clean") filterMatch = t.cleanliness >= 4.3;
-      if (currentFilter === "password") filterMatch = !t.password;
-
-      return keywordMatch && filterMatch;
-    });
+  .stats {
+    grid-template-columns: 1fr;
   }
 
-  function renderList() {
-    if (!listEl) return;
-
-    const data = getFilteredToilets();
-    listEl.innerHTML = "";
-
-    data.forEach((t) => {
-      const card = document.createElement("div");
-      card.className = "place-card";
-      card.innerHTML = `
-        <div class="place-top">
-          <div class="place-left">
-            <div class="place-icon">${t.available ? "🚻" : "⏳"}</div>
-            <div class="place-info">
-              <h4>${t.name}</h4>
-              <p>도보 ${t.distance}분 · ${t.available ? "바로 이용 가능" : "현재 사용 중"}</p>
-            </div>
-          </div>
-          <button type="button" class="favorite favorite-toggle" data-id="${t.id}">
-            ${t.favorite ? "💙" : "🤍"}
-          </button>
-        </div>
-
-        <div class="meta-row">
-          <div class="meta-badge">📍 도보 ${t.distance}분</div>
-          <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
-          <div class="meta-badge">${t.password ? "🔒 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
-          <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-        </div>
-
-        <div class="card-actions">
-          <button type="button" class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
-          <button type="button" class="ghost-btn route-btn" data-id="${t.id}">길찾기</button>
-        </div>
-      `;
-      listEl.appendChild(card);
-    });
-
-    const listStatus = document.getElementById("listStatus");
-    if (listStatus) listStatus.textContent = `${data.length}개 표시 중`;
+  .quick-icons {
+    grid-template-columns: repeat(4, 1fr);
   }
+}
+.page {
+  display: none;
+}
 
-  function renderDetail(id) {
-    if (!detailEl) return;
+.page.active {
+  display: block;
+}
 
-    const t = toilets.find((x) => x.id === id);
-    if (!t) return;
+.bottom-nav button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
 
-    selectedToiletId = id;
+.map-screen {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+}
 
-    detailEl.innerHTML = `
-      <div class="detail-photo-wrap">
-        <img class="detail-photo" src="${t.image}" alt="${t.name} 내부 사진">
-        <div class="detail-photo-badge">${t.available ? "🟢 바로 이용 가능" : "🔴 현재 사용 중"}</div>
-      </div>
+.map-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
 
-      <div class="detail-header">
-        <div class="place-left">
-          <div class="place-icon">${t.available ? "🚻" : "⏳"}</div>
-          <div class="place-info">
-            <h4>${t.name}</h4>
-            <p>도보 ${t.distance}분 · ${t.available ? "바로 이용 가능" : "현재 사용 중"}</p>
-          </div>
-        </div>
-      </div>
+.map-chip {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #e9f5ff 100%);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  color: #55719a;
+  font-weight: 700;
+}
 
-      <div class="detail-grid">
-        <div class="detail-info-card">
-          <span class="detail-label">📍 거리</span>
-          <strong>${t.distance}분</strong>
-        </div>
-        <div class="detail-info-card">
-          <span class="detail-label">✨ 청결도</span>
-          <strong>${t.cleanliness}</strong>
-        </div>
-        <div class="detail-info-card">
-          <span class="detail-label">🔐 비밀번호</span>
-          <strong>${t.password ? "필요" : "없음"}</strong>
-        </div>
-        <div class="detail-info-card">
-          <span class="detail-label">🚦 상태</span>
-          <strong>${t.available ? "사용 가능" : "사용 중"}</strong>
-        </div>
-      </div>
+.fake-map {
+  position: relative;
+  height: 340px;
+  border-radius: 24px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(183, 229, 255, 0.65), transparent 18%),
+    linear-gradient(180deg, #fafdff 0%, #e9f5ff 100%);
+  border: 1px solid rgba(120, 180, 255, 0.18);
+}
 
-      <div class="detail-review-box">
-        <div class="section-head" style="margin-bottom: 8px;">
-          <h3 style="font-size:16px;">이용 후기</h3>
-          <span>review</span>
-        </div>
-        <p class="detail-review-text">${t.memo || "등록된 후기가 아직 없어요."}</p>
-      </div>
+.map-road {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(144, 196, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+}
 
-      <div class="card-actions">
-        <button type="button" class="gloss-btn route-btn" data-id="${t.id}">길찾기</button>
-        <button type="button" class="ghost-btn favorite-toggle" data-id="${t.id}">
-          ${t.favorite ? "💙 즐겨찾기됨" : "🤍 즐겨찾기"}
-        </button>
-      </div>
-    `;
+.road-1 {
+  left: 18px;
+  right: 18px;
+  top: 68px;
+  height: 34px;
+  border-radius: 18px;
+}
 
-    updateMyPage();
-  }
+.road-2 {
+  top: 18px;
+  bottom: 18px;
+  left: 128px;
+  width: 34px;
+  border-radius: 18px;
+}
 
-  function renderMapCards() {
-    if (!mapCardListEl) return;
+.road-3 {
+  left: 70px;
+  right: 28px;
+  bottom: 74px;
+  height: 30px;
+  border-radius: 18px;
+}
 
-    mapCardListEl.innerHTML = "";
-    toilets.forEach((t) => {
-      const card = document.createElement("div");
-      card.className = "place-card";
-      card.innerHTML = `
-        <div class="place-top">
-          <div class="place-left">
-            <div class="place-icon">🗺️</div>
-            <div class="place-info">
-              <h4>${t.name}</h4>
-              <p>지도에서 선택 가능 · 도보 ${t.distance}분</p>
-            </div>
-          </div>
-        </div>
+.map-block {
+  position: absolute;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #dceeff 100%);
+  border: 1px solid rgba(138, 191, 255, 0.2);
+  box-shadow: 0 8px 16px rgba(92, 156, 255, 0.08);
+}
 
-        <div class="meta-row">
-          <div class="meta-badge">📍 ${t.distance}분</div>
-          <div class="meta-badge">✨ ${t.cleanliness}</div>
-          <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-        </div>
+.block-1 {
+  width: 78px;
+  height: 64px;
+  top: 24px;
+  left: 28px;
+}
 
-        <div class="card-actions">
-          <button type="button" class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
-        </div>
-      `;
-      mapCardListEl.appendChild(card);
-    });
-  }
+.block-2 {
+  width: 90px;
+  height: 74px;
+  top: 128px;
+  left: 28px;
+}
 
-  function renderReviews() {
-    if (!reviewListEl) return;
+.block-3 {
+  width: 104px;
+  height: 70px;
+  top: 120px;
+  right: 26px;
+}
 
-    reviewListEl.innerHTML = "";
-    toilets.forEach((t) => {
-      const card = document.createElement("div");
-      card.className = "review-card";
-      card.innerHTML = `
-        <h4>${t.name}</h4>
-        <p>${t.memo || "아직 등록된 후기가 없어요."}</p>
-        <div class="review-meta">
-          <div class="meta-badge">✨ ${t.cleanliness}</div>
-          <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-          <div class="meta-badge">${t.password ? "🔒 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
-        </div>
-      `;
-      reviewListEl.appendChild(card);
-    });
-  }
+.block-4 {
+  width: 116px;
+  height: 82px;
+  bottom: 26px;
+  right: 40px;
+}
 
-  function renderFavorites() {
-    if (!favoriteListEl) return;
+.map-user {
+  position: absolute;
+  left: 188px;
+  top: 160px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #cae8ff 100%);
+  border: 1px solid rgba(122, 183, 255, 0.24);
+  box-shadow: 0 10px 20px rgba(63, 126, 221, 0.18);
+  font-size: 20px;
+}
 
-    const favorites = toilets.filter((t) => t.favorite);
-    favoriteListEl.innerHTML = "";
+.map-pin {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #9fd5ff 100%);
+  box-shadow: 0 10px 20px rgba(63, 126, 221, 0.18);
+  cursor: pointer;
+  font-size: 18px;
+}
 
-    if (favorites.length === 0) {
-      favoriteListEl.innerHTML = `
-        <div class="place-card">
-          <div class="place-info">
-            <h4>아직 즐겨찾기가 없어요</h4>
-            <p>홈에서 마음에 드는 화장실을 저장해보세요.</p>
-          </div>
-        </div>
-      `;
-      return;
-    }
+.pin-1 { top: 72px; right: 40px; }
+.pin-2 { top: 210px; left: 82px; }
+.pin-3 { bottom: 38px; left: 170px; }
+.pin-4 { bottom: 88px; right: 80px; }
 
-    favorites.forEach((t) => {
-      const card = document.createElement("div");
-      card.className = "place-card";
-      card.innerHTML = `
-        <div class="place-top">
-          <div class="place-left">
-            <div class="place-icon">💙</div>
-            <div class="place-info">
-              <h4>${t.name}</h4>
-              <p>도보 ${t.distance}분 · 청결도 ${t.cleanliness}</p>
-            </div>
-          </div>
-        </div>
+.review-board {
+  position: relative;
+  padding: 18px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #edf7ff 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
 
-        <div class="meta-row">
-          <div class="meta-badge">${t.password ? "🔒 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
-          <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-        </div>
-      `;
-      favoriteListEl.appendChild(card);
-    });
-  }
+.review-deco {
+  position: absolute;
+  font-size: 28px;
+  opacity: 0.35;
+  top: 12px;
+  right: 18px;
+}
 
-  function updateStats() {
-    const nearby = document.getElementById("nearbyCount");
-    const available = document.getElementById("availableCount");
-    const avgClean = document.getElementById("avgCleanliness");
+.deco-2 {
+  top: 48px;
+  right: 52px;
+  font-size: 22px;
+}
 
-    if (nearby) nearby.innerText = toilets.length + "개";
-    if (available) available.innerText = toilets.filter((t) => t.available).length + "개";
+.deco-3 {
+  top: 22px;
+  left: 18px;
+  font-size: 24px;
+}
 
-    const avg = toilets.reduce((sum, t) => sum + t.cleanliness, 0) / toilets.length;
-    if (avgClean) avgClean.innerText = avg.toFixed(1);
-  }
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  function updateMyPage() {
-    const favCount = document.getElementById("favCount");
-    const reviewCount = document.getElementById("reviewCount");
-    const recentToilet = document.getElementById("recentToilet");
+.review-card {
+  position: relative;
+  padding: 16px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.18);
+}
 
-    if (favCount) favCount.innerText = toilets.filter((t) => t.favorite).length;
-    if (reviewCount) reviewCount.innerText = toilets.filter((t) => t.memo && t.memo.trim() !== "").length;
+.review-card h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
 
-    const recent = toilets.find((t) => t.id === selectedToiletId);
-    if (recentToilet) recentToilet.innerText = recent ? recent.name.split(" ")[0] : "-";
-  }
+.review-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
 
-  function initSelect() {
-    if (!toiletSelect) return;
+.review-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
 
-    toiletSelect.innerHTML = `<option value="">선택하세요</option>`;
-    toilets.forEach((t) => {
-      const option = document.createElement("option");
-      option.value = t.id;
-      option.innerText = t.name;
-      toiletSelect.appendChild(option);
-    });
-  }
+.my-profile-card {
+  margin-bottom: 18px;
+  padding: 20px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #ebf6ff 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
 
-  function switchPage(pageName) {
-    pages.forEach((page) => page.classList.remove("active"));
-    navItems.forEach((item) => item.classList.remove("active"));
+.profile-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #dff1ff 100%);
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-5);
+}
 
-    document.getElementById(`page-${pageName}`)?.classList.add("active");
-    document.querySelector(`.nav-item[data-page="${pageName}"]`)?.classList.add("active");
-  }
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
 
-  function toggleFavorite(id) {
-    const t = toilets.find((x) => x.id === id);
-    if (!t) return;
+.profile-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  background: linear-gradient(180deg, #ffffff 0%, #cde8ff 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
 
-    t.favorite = !t.favorite;
-    renderList();
-    renderDetail(selectedToiletId || id);
-    renderFavorites();
-    updateMyPage();
-  }
+.profile-row h3 {
+  margin: 0 0 4px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+}
 
-  function initLiveLocation() {
-    const locationText = document.getElementById("currentLocationText");
-    const coordsText = document.getElementById("currentCoords");
-    const statusText = document.getElementById("locationStatus");
-    const userMarker = document.getElementById("mapUserMarker");
+.profile-row p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
 
-    if (!navigator.geolocation) {
-      if (statusText) statusText.textContent = "위치 지원 안 됨";
-      if (locationText) locationText.textContent = "이 브라우저에서는 위치 정보를 사용할 수 없어요";
-      if (coordsText) coordsText.textContent = "-";
-      return;
-    }
+.my-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
 
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const lat = pos.coords.latitude.toFixed(5);
-        const lng = pos.coords.longitude.toFixed(5);
+.my-stat {
+  padding: 14px 12px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4faff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.16);
+  text-align: center;
+}
 
-        if (statusText) statusText.textContent = "현재 위치 반영됨";
-        if (locationText) locationText.textContent = "내 현재 위치 기준";
-        if (coordsText) coordsText.textContent = `${lat}, ${lng}`;
+.my-stat span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: var(--text-soft);
+}
 
-        if (userMarker) {
-          userMarker.innerHTML = "📍";
-          userMarker.title = `현재 위치: ${lat}, ${lng}`;
-        }
-      },
-      () => {
-        if (statusText) statusText.textContent = "위치 권한 필요";
-        if (locationText) locationText.textContent = "위치 권한을 허용하면 현재 위치를 표시할 수 있어요";
-        if (coordsText) coordsText.textContent = "위치 접근 실패";
-      }
-    );
-  }
+.my-stat strong {
+  font-size: 18px;
+  color: var(--blue-5);
+}
+.road-4 {
+  top: 150px;
+  left: 24px;
+  right: 110px;
+  height: 26px;
+  border-radius: 16px;
+}
 
-  document.addEventListener("click", (e) => {
-    const nav = e.target.closest(".nav-item");
-    if (nav) {
-      switchPage(nav.dataset.page);
-      return;
-    }
+.map-block {
+  display: block;
+}
 
-    const detailBtn = e.target.closest(".detail-btn");
-    if (detailBtn) {
-      const id = Number(detailBtn.dataset.id);
-      renderDetail(id);
-      switchPage("home");
-      return;
-    }
+.block-5 {
+  width: 82px;
+  height: 58px;
+  top: 228px;
+  left: 36px;
+}
 
-    const favoriteBtn = e.target.closest(".favorite-toggle");
-    if (favoriteBtn) {
-      const id = Number(favoriteBtn.dataset.id);
-      toggleFavorite(id);
-      return;
-    }
+.map-label {
+  position: absolute;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(130, 190, 255, 0.18);
+  font-size: 11px;
+  color: #55719a;
+  font-weight: 700;
+  box-shadow: 0 8px 16px rgba(92, 156, 255, 0.08);
+}
 
-    const routeBtn = e.target.closest(".route-btn");
-    if (routeBtn) {
-      alert("길찾기 기능은 MVP 데모용입니다.");
-    }
-  });
+.label-1 { top: 28px; left: 26px; }
+.label-2 { top: 122px; right: 24px; }
+.label-3 { top: 196px; left: 122px; }
+.label-4 { bottom: 26px; right: 26px; }
+.label-5 { bottom: 128px; left: 18px; }
 
-  searchInput?.addEventListener("input", () => {
-    renderList();
-  });
+.poi-cafe { top: 70px; right: 78px; }
+.poi-station { top: 176px; left: 212px; }
+.poi-park { bottom: 34px; right: 118px; }
+.poi-office { bottom: 120px; left: 78px; }
+.poi-mall { top: 54px; left: 138px; }
+.map-label {
+  z-index: 4;
+  white-space: nowrap;
+}
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      currentFilter = btn.dataset.filter;
-      renderList();
-    });
-  });
+.poi,
+.map-pin,
+#mapUserMarker {
+  z-index: 3;
+}
 
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
+.poi {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffffff 0%, #d9eeff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  box-shadow: 0 8px 16px rgba(92, 156, 255, 0.1);
+  font-size: 16px;
+}
 
-    const id = Number(document.getElementById("toiletSelect")?.value);
-    const cleanliness = Number(document.getElementById("cleanlinessSelect")?.value);
-    const availability = document.getElementById("availabilitySelect")?.value;
-    const memo = document.getElementById("memoInput")?.value.trim();
+.poi-cafe { top: 72px; right: 72px; }
+.poi-station { top: 170px; left: 182px; }
+.poi-park { bottom: 42px; right: 92px; }
+.poi-office { bottom: 118px; left: 68px; }
+.poi-mall { top: 40px; left: 74px; }
 
-    const t = toilets.find((x) => x.id === id);
-    if (!t) return;
+#mapUserMarker {
+  transition: all 0.3s ease;
+  z-index: 3;
+}
 
-    if (cleanliness) t.cleanliness = cleanliness;
-    if (availability === "available") t.available = true;
-    if (availability === "busy" || availability === "closed") t.available = false;
-    if (memo) t.memo = memo;
+.profile-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #cde8ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.22);
+  box-shadow: 0 8px 18px rgba(92, 156, 255, 0.12);
+}
+.ad-modal-card {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(92, 156, 255, 0.14);
+}
 
-    if (formMessage) formMessage.textContent = "후기가 등록되었어요 💙";
-    form.reset();
+.ad-badge {
+  display: inline-block;
+  margin: 6px 0 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #dff1ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-5);
+}
 
-    renderList();
-    renderDetail(id);
-    renderReviews();
-    renderMapCards();
-    updateStats();
-    updateMyPage();
-  });
+.ad-title {
+  margin: 0 0 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #23466b;
+}
 
-  findNearbyBtn?.addEventListener("click", () => {
-    switchPage("map");
-  });
+.ad-desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
 
-  openGuideBtn?.addEventListener("click", () => {
-    guideModal?.classList.remove("hidden");
-  });
 
-  closeGuideBtn?.addEventListener("click", () => {
-    guideModal?.classList.add("hidden");
-  });
+.ad-modal-card {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(92, 156, 255, 0.14);
+}
 
-  closeAdBtn?.addEventListener("click", () => {
-    adModal?.classList.add("hidden");
-  });
+.ad-badge {
+  display: inline-block;
+  margin: 6px 0 12px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffffff 0%, #dff1ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue-5);
+}
 
-  adLaterBtn?.addEventListener("click", () => {
-    adModal?.classList.add("hidden");
-  });
+.ad-title {
+  margin: 0 0 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #23466b;
+}
 
-  adVisitBtn?.addEventListener("click", () => {
-    alert("티앙팡: 오후의 홍차\nToilet Now 앱을 통해 방문하면 다과를 서비스로 제공합니다.");
-  });
+.ad-desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
 
-  adVisitBtnFixed?.addEventListener("click", () => {
-    alert("티앙팡: 오후의 홍차\n방문 시 다과 50% 할인 혜택 제공!");
-  });
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(20, 32, 54, 0.28);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-  window.showDetail = function (id) {
-    renderDetail(id);
-    switchPage("home");
-  };
+.modal.hidden {
+  display: none;
+}
 
-  renderList();
-  renderMapCards();
-  renderReviews();
-  renderFavorites();
-  updateStats();
-  updateMyPage();
-  initSelect();
-  renderDetail(1);
-  initLiveLocation();
-  switchPage("home");
-});
+.modal-content {
+  width: min(420px, 100%);
+  margin: 0 !important;
+}
+.ad-card-fixed {
+  background: linear-gradient(180deg, #ffffff 0%, #eef7ff 100%);
+  border: 1px solid rgba(130, 190, 255, 0.2);
+  box-shadow: 0 18px 40px rgba(92, 156, 255, 0.12);
+}
