@@ -687,13 +687,12 @@ body {
   background: linear-gradient(180deg, #ffffff 0%, #ebf6ff 100%);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  position: relative;
   overflow: hidden;
 }
 
 .profile-badge {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   padding: 8px 12px;
   border-radius: 999px;
   background: linear-gradient(180deg, #ffffff 0%, #dff1ff 100%);
@@ -707,31 +706,38 @@ body {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .profile-avatar {
-  width: 66px;
-  height: 66px;
+  width: 72px;
+  height: 72px;
   border-radius: 22px;
   display: grid;
   place-items: center;
   font-size: 30px;
   background: linear-gradient(180deg, #ffffff 0%, #cde8ff 100%);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(130, 190, 255, 0.22);
+  box-shadow: 0 8px 18px rgba(92, 156, 255, 0.12);
+  flex-shrink: 0;
 }
 
-.profile-row h3 {
-  margin: 0 0 4px;
+.profile-text {
+  flex: 1;
+}
+
+.profile-text h3 {
+  margin: 0 0 6px;
   font-family: "Cormorant Garamond", serif;
   font-size: 28px;
+  line-height: 1.1;
 }
 
-.profile-row p {
+.profile-text p {
   margin: 0;
   color: var(--text-soft);
   font-size: 13px;
+  line-height: 1.5;
 }
 
 .my-stats {
@@ -759,14 +765,6 @@ body {
   font-size: 18px;
   color: var(--blue-5);
 }
-.road-4 {
-  top: 150px;
-  left: 24px;
-  right: 110px;
-  height: 26px;
-  border-radius: 16px;
-}
-
 .map-block {
   display: block;
 }
