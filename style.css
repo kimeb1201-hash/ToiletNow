@@ -1079,3 +1079,9 @@ body {
     transform: translateY(0) rotate(0deg);
   }
 }
+.review-user{
+  margin:6px 0 10px;
+  font-size:12px;
+  color:#7a8ca8;
+  font-weight:600;
+}
