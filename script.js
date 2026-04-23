@@ -4,8 +4,10 @@ const toilets = [
     name: "ECC 4층 화장실",
     distance: 2,
     cleanliness: 2,
-    available: true,
+    crowd: "보통",
     soap: true,
+    paper: true,
+    available: true,
     favorite: false,
     memo: "변기 8개중에 5개가 고장인데 현대예술임?"
   },
@@ -14,8 +16,10 @@ const toilets = [
     name: "학관 신관 2층 화장실",
     distance: 4,
     cleanliness: 4.2,
-    available: false,
+    crowd: "혼잡",
     soap: true,
+    paper: true,
+    available: true,
     favorite: false,
     memo: "피크타임에 대기인원 많음. 휴지도 부족함"
   },
@@ -24,9 +28,11 @@ const toilets = [
     name: "포스코관 1층 화장실",
     distance: 3,
     cleanliness: 1,
-    available: true,
+    crowd: "혼잡",
     soap: false,
-    favorite: true,
+    paper: true,
+    available: true,
+    favorite: false,
     memo: "악취 심하고 수압이 약해요. 변기뚜껑도 몇 개 없음.."
   },
   {
@@ -34,8 +40,10 @@ const toilets = [
     name: "생활환경관 지하 화장실",
     distance: 5,
     cleanliness: 2.5,
-    available: true,
+    crowd: "여유",
     soap: true,
+    paper: true,
+    available: true,
     favorite: false,
     memo: "와 학교안에서 이렇게 낡은 화장실 처음 봄. 그리고 물이 개뜨거움 손대임"
   }
