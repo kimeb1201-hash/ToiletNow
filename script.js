@@ -1,43 +1,43 @@
 const toilets = [
   {
     id: 1,
-    name: "스타필드 1층 화장실",
+    name: "ECC 4층 화장실",
     distance: 2,
-    cleanliness: 4.8,
+    cleanliness: 2,
     available: true,
-    password: false,
+    soap: true,
     favorite: false,
-    memo: "비밀번호 없이 바로 사용 가능하고 매우 깨끗했어요. 향기도 좋고 엄청 고급져요."
+    memo: "변기 8개중에 5개가 고장인데 현대예술임?"
   },
   {
     id: 2,
-    name: "중앙역 2번 출구 화장실",
+    name: "학관 신관 2층 화장실",
     distance: 4,
     cleanliness: 4.2,
     available: false,
-    password: true,
+    soap: true,
     favorite: false,
-    memo: "휴지가 없는 칸이 몇 개 있어요."
+    memo: "피크타임에 대기인원 많음. 휴지도 부족함"
   },
   {
     id: 3,
-    name: "시청 공원 화장실",
+    name: "포스코관 1층 화장실",
     distance: 3,
-    cleanliness: 3.9,
+    cleanliness: 1,
     available: true,
-    password: false,
+    soap: false,
     favorite: true,
-    memo: "비누가 없고 수압이 약하니 종이비누를 챙기세요."
+    memo: "악취 심하고 수압이 약해요. 변기뚜껑도 몇 개 없음.."
   },
   {
     id: 4,
-    name: "롯데몰 3층 화장실",
+    name: "생활환경관 지하 화장실",
     distance: 5,
-    cleanliness: 4.5,
+    cleanliness: 2.5,
     available: true,
-    password: true,
+    soap: true,
     favorite: false,
-    memo: "청결도 높지만 양변기가 몇 개 없고 악취가 납니다 ㅠㅠ."
+    memo: "와 학교안에서 이렇게 낡은 화장실 처음 봄. 그리고 물이 개뜨거움 손대임"
   }
 ];
 
@@ -69,7 +69,7 @@ function getFilteredToilets() {
     let filterMatch = true;
     if (currentFilter === "available") filterMatch = t.available;
     if (currentFilter === "clean") filterMatch = t.cleanliness >= 4.3;
-    if (currentFilter === "password") filterMatch = !t.password;
+    if (currentFilter === "soap") filterMatch = t.soap;
 
     return keywordMatch && filterMatch;
   });
@@ -101,7 +101,7 @@ function renderList() {
       <div class="meta-row">
         <div class="meta-badge">📍 도보 ${t.distance}분</div>
         <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
-        <div class="meta-badge">${t.password ? "🔒 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
+        <div class="meta-badge">${t.soap ? "🧼 비누 있음" : "❌ 비누 없음"}</div>
         <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
       </div>
 
