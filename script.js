@@ -77,8 +77,9 @@ function getFilteredToilets() {
     let filterMatch = true;
     if (currentFilter === "available") filterMatch = t.available;
     if (currentFilter === "clean") filterMatch = t.cleanliness >= 4.3;
+    if (currentFilter === "crowd") filterMatch = t.crowd === "여유";
     if (currentFilter === "soap") filterMatch = t.soap;
-
+    if (currentFilter === "paper") filterMatch = t.paper;
     return keywordMatch && filterMatch;
   });
 }
@@ -107,12 +108,13 @@ function renderList() {
       </div>
 
       <div class="meta-row">
-        <div class="meta-badge">📍 도보 ${t.distance}분</div>
-        <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
-        <div class="meta-badge">${t.soap ? "🧼 비누 있음" : "❌ 비누 없음"}</div>
-        <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-      </div>
-
+  <div class="meta-badge">📍 거리 ${t.distance}분</div>
+  <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
+  <div class="meta-badge">${t.soap ? "🧼 비누 있음" : "❌ 비누 없음"}</div>
+  <div class="meta-badge">${t.paper ? "🧻 휴지 있음" : "❌ 휴지 없음"}</div>
+  <div class="meta-badge">${t.crowd === "여유" ? "🟢 혼잡도 낮음" : t.crowd === "보통" ? "🟡 보통" : "🔴 혼잡"}</div>
+  <div class="meta-badge">${t.available ? "🟢 바로 이용 가능" : "🔴 현재 이용 어려움"}</div>
+</div>
       <div class="card-actions">
         <button type="button" class="gloss-btn detail-btn" data-id="${t.id}">상세보기</button>
         <button type="button" class="ghost-btn route-btn" data-id="${t.id}">길찾기</button>
@@ -397,6 +399,9 @@ form?.addEventListener("submit", (e) => {
   const cleanliness = Number(document.getElementById("cleanlinessSelect")?.value);
   const availability = document.getElementById("availabilitySelect")?.value;
   const memo = document.getElementById("memoInput")?.value.trim();
+  const crowd = document.getElementById("crowdSelect")?.value;
+  const soap = document.getElementById("soapSelect")?.value;
+  const paper = document.getElementById("paperSelect")?.value;
 
   const t = toilets.find((x) => x.id === id);
   if (!t) return;
@@ -405,6 +410,9 @@ form?.addEventListener("submit", (e) => {
   if (availability === "available") t.available = true;
   if (availability === "busy" || availability === "closed") t.available = false;
   if (memo) t.memo = memo;
+  if (crowd) t.crowd = crowd;
+  if (soap !== "") t.soap = soap === "true";
+  if (paper !== "") t.paper = paper === "true";
 
   if (formMessage) formMessage.textContent = "후기가 등록되었어요 💙";
   form.reset();
