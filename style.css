@@ -1113,7 +1113,10 @@ body {
   line-height:1.25;
 }
 .ewha-logo{
- width:70px;
- display:block;
- margin:0 auto 14px;
+  width:48px !important;
+  height:48px !important;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 10px;
+}
 }
