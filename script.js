@@ -9,6 +9,8 @@ const toilets = [
     paper: true,
     available: true,
     favorite: false,
+    reviewer:"익명",
+  time:"1 month",
     memo: "변기 8개중에 5개가 고장인데 현대예술임?"
   },
   {
@@ -21,6 +23,8 @@ const toilets = [
     paper: true,
     available: true,
     favorite: false,
+    reviewer:"서정",
+  time:"15 minute",
     memo: "피크타임에 대기인원 많음. 휴지도 부족함"
   },
   {
@@ -33,6 +37,8 @@ const toilets = [
     paper: true,
     available: true,
     favorite: false,
+    reviewer:"최민지",
+  time:"now",
     memo: "악취 심하고 수압이 약해요. 변기뚜껑도 몇 개 없음.."
   },
   {
@@ -45,6 +51,8 @@ const toilets = [
     paper: true,
     available: true,
     favorite: false,
+    reviewer:"yongchil choi",
+  time:"2 days",
     memo: "와 학교안에서 이렇게 낡은 화장실 처음 봄. 그리고 물이 개뜨거움 손대임"
   }
 ];
@@ -207,15 +215,39 @@ function renderReviews() {
   toilets.forEach((t) => {
     const card = document.createElement("div");
     card.className = "review-card";
-    card.innerHTML = `
-      <h4>${t.name}</h4>
-      <p>${t.memo || "아직 등록된 후기가 없어요."}</p>
-      <div class="review-meta">
-        <div class="meta-badge">✨ ${t.cleanliness}</div>
-        <div class="meta-badge">${t.available ? "🟢 이용 가능" : "🔴 사용중"}</div>
-        <div class="meta-badge">${t.password ? "🔒 비밀번호 필요" : "🔓 비밀번호 없음"}</div>
-      </div>
-    `;
+   card.innerHTML = `
+  <h4>${t.name}</h4>
+
+  <p class="review-user">
+    👤 ${t.reviewer || "익명 사용자"} · ${t.time || "최근 작성"}
+  </p>
+
+  <p>${t.memo || "아직 등록된 후기가 없어요."}</p>
+
+  <div class="review-meta">
+    <div class="meta-badge">✨ 청결도 ${t.cleanliness}</div>
+
+    <div class="meta-badge">
+      ${t.crowd === "여유"
+        ? "👥 여유"
+        : t.crowd === "보통"
+        ? "👥 보통"
+        : "👥 혼잡"}
+    </div>
+
+    <div class="meta-badge">
+      ${t.soap ? "🧼 비누 있음" : "❌ 비누 없음"}
+    </div>
+
+    <div class="meta-badge">
+      ${t.paper ? "🧻 휴지 있음" : "❌ 휴지 없음"}
+    </div>
+
+    <div class="meta-badge">
+      ${t.available ? "🟢 이용 가능" : "🔴 사용중"}
+    </div>
+  </div>
+`;
     reviewListEl.appendChild(card);
   });
 }
