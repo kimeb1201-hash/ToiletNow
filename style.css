@@ -1095,3 +1095,20 @@ body {
   object-fit: cover;
   display: block;
 }
+  .ewha-logo{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 14px;
+  filter: drop-shadow(0 6px 14px rgba(70,130,180,0.18));
+}
+
+.hero{
+  text-align:center;
+}
+
+.hero h2{
+  font-size:30px;
+  line-height:1.25;
+}
